@@ -1,8 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const productRoute = require("./routes/product.route");
 const PORT = 4000;
 
 const app = express();
+
+// Middlewares
+app.use(express.json());
 
 app.listen(PORT, () => {
   console.log(`Server is running on Port ${PORT}`);
@@ -12,6 +16,8 @@ app.listen(PORT, () => {
 app.get("/", (req, res) => {
   res.send("Welcome to our online shopping center ...");
 });
+
+app.use("/api/products", productRoute);
 
 mongoose
   .connect(
