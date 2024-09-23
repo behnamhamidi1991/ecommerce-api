@@ -40,14 +40,14 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findByIdAndUpdate(id);
+    const user = await User.findByIdAndUpdate(id, req.body);
 
     if (!user) {
       res.status(404).json("User not found!");
     }
 
     const updatedUser = await User.findById(id);
-    res.status(200).json(user);
+    res.status(200).json(updatedUser);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
