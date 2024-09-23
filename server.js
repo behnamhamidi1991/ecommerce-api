@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const productRoute = require("./routes/product.route");
+const userRoute = require("./routes/user.route");
 const PORT = 4000;
 
 const app = express();
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRoute);
+app.use("/api/users", userRoute);
 
 mongoose
   .connect(
